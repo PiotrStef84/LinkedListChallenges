@@ -29,7 +29,15 @@ public class RemoveDuplicates {
         List<Integer> expectedNodes = new ArrayList<Integer>(Arrays.asList(1, 3, 4, 5, 6));
 
         System.out.println(input.next.next.value);
+        System.out.println(input.next.next.next.value);
 
+        LinkedList result = removeDuplicatesFromLinkedList(input);
+
+        // Loop to iterate through nodes and check result.
+        while(result != null){
+            System.out.println(result.value);
+            result = result.next;
+        }
     }
 
     public static class LinkedList {
@@ -42,9 +50,19 @@ public class RemoveDuplicates {
         }
     }
 
-    public LinkedList removeDuplicatesFromLinkedList(LinkedList linkedList) {
-        // Write your code here.
-        return null;
+    public static LinkedList removeDuplicatesFromLinkedList(LinkedList linkedList) {
+
+        LinkedList currentNode = linkedList;
+        while(currentNode != null){
+            LinkedList nextDistinctNode = currentNode.next;
+            while(nextDistinctNode != null && nextDistinctNode.value == currentNode.value){
+                nextDistinctNode = nextDistinctNode.next;
+            }
+            currentNode.next = nextDistinctNode;
+            currentNode = nextDistinctNode;
+        }
+
+        return linkedList;
     }
 
 
